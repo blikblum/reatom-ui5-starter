@@ -1,4 +1,3 @@
-import { appCtx } from './appCtx'
 import { appSessionAtom } from './appSession'
 
 export async function signIn({
@@ -9,7 +8,16 @@ export async function signIn({
   password: string
 }): Promise<void> {
   // todo: use mutative or immer
-  appSessionAtom(appCtx, (appSession) => ({
+  if (!email || !password) {
+    appSessionAtom.set((appSession) => ({
+      ...appSession,
+      error: 'Email and password are required',
+    }))
+
+    return
+  }
+
+  appSessionAtom.set((appSession) => ({
     ...appSession,
     isSigning: true,
     error: undefined,
@@ -18,7 +26,7 @@ export async function signIn({
   await new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       if (email === 'jon@hotmail.com' && password === '123') {
-        appSessionAtom(appCtx, (appSession) => ({
+        appSessionAtom.set((appSession) => ({
           ...appSession,
           isSigned: true,
           isSigning: false,
@@ -30,7 +38,7 @@ export async function signIn({
         }))
         resolve()
       } else {
-        appSessionAtom(appCtx, (appSession) => ({
+        appSessionAtom.set((appSession) => ({
           ...appSession,
           isSigning: false,
           isSigned: false,

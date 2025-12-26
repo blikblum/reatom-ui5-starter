@@ -20,6 +20,7 @@ import '@ui5/webcomponents/dist/StepInput.js'
 import '@ui5/webcomponents/dist/Table.js'
 import '@ui5/webcomponents/dist/TableCell.js'
 import '@ui5/webcomponents/dist/TableRow.js'
+import '@ui5/webcomponents/dist/Text.js'
 import '@ui5/webcomponents/dist/TextArea.js'
 
 // icons
@@ -37,6 +38,7 @@ import '@ui5/webcomponents-icons/dist/v5/status-completed.js'
 import '@ui5/webcomponents-icons/dist/v5/folder.js'
 
 // ui5-fiori
+import '@ui5/webcomponents-fiori/dist/NavigationLayout.js'
 import '@ui5/webcomponents-fiori/dist/NotificationListItem.js'
 import '@ui5/webcomponents-fiori/dist/ShellBar.js'
 import '@ui5/webcomponents-fiori/dist/SideNavigation.js'

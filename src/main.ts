@@ -1,7 +1,6 @@
 import { Router, WCRouteDef } from 'slick-router'
 import './setup/web-preset'
 import { isSignedAtom } from './stores/appSession'
-import { appCtx } from './stores/appCtx'
 
 // pages
 import './pages/login/login-page'
@@ -9,17 +8,14 @@ import './pages/app-shell/app-shell-page'
 import './pages/home/home-page'
 import './pages/settings/settings-page'
 
-// todo: remove when fixed upstream
-type RouteDef = WCRouteDef & { children?: RouteDef[] }
-
-const routes: RouteDef[] = [
+const routes: WCRouteDef[] = [
   { name: 'login', path: '/', component: 'login-page' },
   {
     name: 'app',
     path: '/app',
     component: 'app-shell-page',
     beforeEnter(transition) {
-      const isSigned = appCtx.get(isSignedAtom)
+      const isSigned = isSignedAtom()
       if (!isSigned) {
         transition.redirectTo('login')
         return false
@@ -37,7 +33,7 @@ const router = new Router({ routes, outlet: 'router-outlet' })
 
 router.listen()
 
-appCtx.subscribe(isSignedAtom, (isSigned) => {
+isSignedAtom.subscribe((isSigned) => {
   if (!isSigned) {
     router.transitionTo('login')
   } else {

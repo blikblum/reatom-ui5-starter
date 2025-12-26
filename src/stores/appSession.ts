@@ -1,4 +1,4 @@
-import { atom } from '@reatom/core'
+import { atom, computed } from '@reatom/core'
 import { AppSession } from '../api/appSession'
 
 export const appSessionAtom = atom<AppSession>({
@@ -8,7 +8,6 @@ export const appSessionAtom = atom<AppSession>({
   user: undefined,
 })
 
-export const isSignedAtom = atom((ctx) => {
-  const appSession = ctx.spy(appSessionAtom)
-  return appSession.isSigned
+export const isSignedAtom = computed(() => {
+  return appSessionAtom().isSigned
 })

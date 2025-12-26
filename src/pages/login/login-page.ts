@@ -1,10 +1,10 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, PropertyDeclarations } from 'lit'
 import { BSHelpersCSS } from 'helpers/bootstrapCSS'
 import { withStore } from 'lit-reatom'
 import { appSessionAtom } from 'stores/appSession'
 
 class LoginPage extends withStore(LitElement) {
-  static properties = {
+  static properties: PropertyDeclarations = {
     appSession: { attribute: false, store: appSessionAtom },
   }
 
@@ -15,14 +15,12 @@ class LoginPage extends withStore(LitElement) {
     const email = this.shadowRoot?.getElementById('email') as HTMLInputElement
     const password = this.shadowRoot?.getElementById('password') as HTMLInputElement
 
-    if (email && password && email.value && password.value) {
-      this.dispatchEvent(
-        new CustomEvent('sign-in', {
-          detail: { email: email.value, password: password.value },
-          bubbles: true,
-        }),
-      )
-    }
+    this.dispatchEvent(
+      new CustomEvent('sign-in', {
+        detail: { email: email?.value, password: password?.value },
+        bubbles: true,
+      }),
+    )
   }
 
   render() {
@@ -39,11 +37,11 @@ class LoginPage extends withStore(LitElement) {
                 class="w-100"
               >
                 ${error
-                  ? html`<div>
+                  ? html`<ui5-form-item>
                       <ui5-message-strip design="Negative" hide-close-button
                         >${error}</ui5-message-strip
                       >
-                    </div>`
+                    </ui5-form-item>`
                   : ''}
                 <ui5-form-item>
                   <ui5-label for="email" slot="labelContent">Email:</ui5-label>
@@ -59,6 +57,7 @@ class LoginPage extends withStore(LitElement) {
                     >Entrar</ui5-button
                   >
                 </ui5-form-item>
+                <ui5-text>Try jon@hotmail.com with password 123</ui5-text>
               </ui5-form>
             </ui5-busy-indicator>
           </div>

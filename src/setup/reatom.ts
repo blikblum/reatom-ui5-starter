@@ -1,7 +1,3 @@
-import { setDefaultCtx } from 'lit-reatom'
-import { connectLogger } from '@reatom/logger'
-import { appCtx } from '../stores/appCtx'
+import { connectLogger } from '@reatom/core'
 
-setDefaultCtx(appCtx)
-
-connectLogger(appCtx)
+connectLogger()

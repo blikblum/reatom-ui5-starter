@@ -1,3 +1,4 @@
+import './lit'
 import './slick-router'
 import './reatom'
 import './ui5'
