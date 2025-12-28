@@ -1,17 +1,17 @@
 import { appSessionAtom } from './appSession'
 
 export async function signIn({
-  email,
+  user,
   password,
 }: {
-  email: string
+  user: string
   password: string
 }): Promise<void> {
   // todo: use mutative or immer
-  if (!email || !password) {
+  if (!user || !password) {
     appSessionAtom.set((appSession) => ({
       ...appSession,
-      error: 'Email and password are required',
+      error: 'User and password are required',
     }))
 
     return
@@ -25,7 +25,7 @@ export async function signIn({
 
   await new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      if (email === 'jon@hotmail.com' && password === '123') {
+      if (user === 'jon@hotmail.com' && password === '123') {
         appSessionAtom.set((appSession) => ({
           ...appSession,
           isSigned: true,
@@ -42,7 +42,7 @@ export async function signIn({
           ...appSession,
           isSigning: false,
           isSigned: false,
-          error: 'Invalid email or password',
+          error: 'Invalid user or password',
         }))
         reject()
       }

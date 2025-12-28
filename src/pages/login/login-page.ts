@@ -2,6 +2,7 @@ import { LitElement, html, css, PropertyDeclarations } from 'lit'
 import { BSHelpersCSS } from 'helpers/bootstrapCSS'
 import { withStore } from 'lit-reatom'
 import { appSessionAtom } from 'stores/appSession'
+import { dispatchTask } from '../../helpers/domTask'
 
 class LoginPage extends withStore(LitElement) {
   static properties: PropertyDeclarations = {
@@ -15,12 +16,7 @@ class LoginPage extends withStore(LitElement) {
     const email = this.shadowRoot?.getElementById('email') as HTMLInputElement
     const password = this.shadowRoot?.getElementById('password') as HTMLInputElement
 
-    this.dispatchEvent(
-      new CustomEvent('sign-in', {
-        detail: { email: email?.value, password: password?.value },
-        bubbles: true,
-      }),
-    )
+    dispatchTask(this, 'login', { user: email?.value, password: password?.value })
   }
 
   render() {

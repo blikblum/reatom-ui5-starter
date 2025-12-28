@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook'
 
 import globals from 'globals'
 import pluginJs from '@eslint/js'
@@ -12,5 +12,6 @@ export default [
   pluginJs.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
-  ...storybook.configs["flat/recommended"]
-];
+  ...storybook.configs['flat/recommended'],
+  { rules: { '@typescript-eslint/no-explicit-any': 'off' } },
+]
