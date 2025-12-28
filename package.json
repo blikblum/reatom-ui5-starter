@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest"
+    "test": "vitest --run"
   },
   "dependencies": {
     "@reatom/core": "^1000.1.0",
