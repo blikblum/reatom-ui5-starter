@@ -16,7 +16,7 @@ class LoginPage extends withStore(LitElement) {
     const email = this.shadowRoot?.getElementById('email') as HTMLInputElement
     const password = this.shadowRoot?.getElementById('password') as HTMLInputElement
 
-    dispatchTask(this, 'login', { user: email?.value, password: password?.value })
+    dispatchTask(this, 'sign-in', { user: email?.value, password: password?.value })
   }
 
   render() {
