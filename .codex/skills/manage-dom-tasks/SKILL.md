@@ -16,7 +16,7 @@ Example (new task):
 ```ts
 declare module '../helpers/domTask' {
   interface TaskEventRegistry {
-    'login': { params: { user: string; password: string }; returns: void }
+    login: { params: { user: string; password: string }; returns: void }
   }
 }
 ```
@@ -26,10 +26,8 @@ Use discriminated unions for conditional params (e.g., when some params only app
 ```ts
 declare module '../helpers/domTask' {
   interface TaskEventRegistry {
-    'login': {
-      params:
-        | { type: 'google' }
-        | { type: 'email'; email: string; password: string }
+    login: {
+      params: { type: 'google' } | { type: 'email'; email: string; password: string }
       returns: void
     }
   }

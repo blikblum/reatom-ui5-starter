@@ -11,9 +11,6 @@ export default {
   args: {},
 }
 
-
 export const Default = {
-  args: {
-  
-  },
+  args: {},
 }
