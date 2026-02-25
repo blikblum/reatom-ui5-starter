@@ -32,13 +32,15 @@ class LoginPage extends withStore(LitElement) {
                 label-span="S12 M12 L12 XL12"
                 class="w-100"
               >
-                ${error
-                  ? html`<ui5-form-item>
+                ${
+                  error
+                    ? html`<ui5-form-item>
                       <ui5-message-strip design="Negative" hide-close-button
                         >${error}</ui5-message-strip
                       >
                     </ui5-form-item>`
-                  : ''}
+                    : ''
+                }
                 <ui5-form-item>
                   <ui5-label for="email" slot="labelContent">Email:</ui5-label>
                   <ui5-input type="Email" id="email"></ui5-input>

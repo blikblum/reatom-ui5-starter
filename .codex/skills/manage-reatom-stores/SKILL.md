@@ -58,6 +58,7 @@ export function addMovie(movie: Movie): void {
 Search for all usages and update them to match the new store shape.
 
 Use:
+
 - `rg -n "moviesAtom|movieCountAtom|addMovie" src`
 
 ## 5) Keep types strict and clean
