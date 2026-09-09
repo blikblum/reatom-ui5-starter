@@ -1,7 +1,7 @@
-import { LitElement, html, css } from 'lit'
-import { BSHelpersCSS } from 'helpers/bootstrapCSS'
+import { html } from 'lit'
+import { Component } from 'helpers/component'
 
-class SettingsPage extends LitElement {
+class SettingsPage extends Component {
   render() {
     return html`
       <div class="container-fluid">
@@ -9,8 +9,6 @@ class SettingsPage extends LitElement {
       </div>
     `
   }
-
-  static styles = [BSHelpersCSS, css``]
 }
 
 customElements.define('settings-page', SettingsPage)

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import tsConfigPaths from 'vite-tsconfig-paths'
+
 import autoprefixer from 'autoprefixer'
 
 export default defineConfig(({ mode }) => {
@@ -13,7 +13,9 @@ export default defineConfig(({ mode }) => {
     },
     publicDir: '../public',
     envDir: '..',
-    plugins: [tsConfigPaths()],
+    resolve: {
+      tsconfigPaths: true,
+    },
     css: {
       postcss: { plugins: [autoprefixer()] },
     },

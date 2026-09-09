@@ -1,10 +1,23 @@
-import { LitElement, html, css, PropertyDeclarations } from 'lit'
-import { BSHelpersCSS } from 'helpers/bootstrapCSS'
-import { withStore } from 'lit-reatom'
+import { html, PropertyDeclarations } from 'lit'
 import { appSessionAtom } from 'stores/appSession'
-import { dispatchTask } from '../../helpers/domTask'
+import { dispatchTask } from 'helpers/domTask'
+import { Component } from 'helpers/component'
 
-class LoginPage extends withStore(LitElement) {
+import './login-page.scss'
+
+const isDev = import.meta.env.DEV
+
+function demoCredentialsClick(e: Event) {
+  e.preventDefault()
+  const button = e.currentTarget as HTMLButtonElement
+  const loginPage = button.closest('login-page') as LoginPage
+  const email = loginPage.querySelector('#email') as HTMLInputElement
+  const password = loginPage.querySelector('#password') as HTMLInputElement
+  email.value = 'jon@hotmail.com'
+  password.value = '123'
+}
+
+class LoginPage extends Component {
   static properties: PropertyDeclarations = {
     appSession: { attribute: false, store: appSessionAtom },
   }
@@ -13,8 +26,8 @@ class LoginPage extends withStore(LitElement) {
 
   signInClick(e: Event) {
     e.preventDefault()
-    const email = this.shadowRoot?.getElementById('email') as HTMLInputElement
-    const password = this.shadowRoot?.getElementById('password') as HTMLInputElement
+    const email = this.querySelector('#email') as HTMLInputElement
+    const password = this.querySelector('#password') as HTMLInputElement
 
     dispatchTask(this, 'sign-in', { user: email?.value, password: password?.value })
   }
@@ -35,10 +48,10 @@ class LoginPage extends withStore(LitElement) {
                 ${
                   error
                     ? html`<ui5-form-item>
-                      <ui5-message-strip design="Negative" hide-close-button
-                        >${error}</ui5-message-strip
-                      >
-                    </ui5-form-item>`
+                        <ui5-message-strip design="Negative" hide-close-button
+                          >${error}</ui5-message-strip
+                        >
+                      </ui5-form-item>`
                     : ''
                 }
                 <ui5-form-item>
@@ -55,7 +68,7 @@ class LoginPage extends withStore(LitElement) {
                     >Entrar</ui5-button
                   >
                 </ui5-form-item>
-                <ui5-text>Try jon@hotmail.com with password 123</ui5-text>
+                ${isDev ? html`<ui5-button class="w-100 mt-2" @click=${demoCredentialsClick}>Use demo credentials</ui5-button>` : ''}
               </ui5-form>
             </ui5-busy-indicator>
           </div>
@@ -63,21 +76,6 @@ class LoginPage extends withStore(LitElement) {
       </div>
     `
   }
-
-  static styles = [
-    BSHelpersCSS,
-    css`
-      :host {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-      }
-
-      ui5-busy-indicator {
-        display: contents;
-      }
-    `,
-  ]
 }
 
 customElements.define('login-page', LoginPage)

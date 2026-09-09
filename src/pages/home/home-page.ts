@@ -1,16 +1,13 @@
-import { LitElement, html, css } from 'lit'
-import { BSHelpersCSS } from 'helpers/bootstrapCSS'
+import { html } from 'lit'
 
-class HomePage extends LitElement {
+import { Component } from 'helpers/component'
+
+class HomePage extends Component {
   render() {
-    return html`
-      <div class="container-fluid">
-        <div class="row">Home!</div>
-      </div>
-    `
+    return html` <div class="container-fluid">
+      <div class="row">Home!</div>
+    </div>`
   }
-
-  static styles = [BSHelpersCSS, css``]
 }
 
 customElements.define('home-page', HomePage)

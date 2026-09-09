@@ -1,3 +1,4 @@
+import './bootstrap'
 import './lit'
 import './slick-router'
 import './reatom'

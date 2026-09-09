@@ -1,0 +1,9 @@
+login-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  ui5-busy-indicator {
+    display: contents;
+  }
+}

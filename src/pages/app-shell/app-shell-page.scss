@@ -1,0 +1,13 @@
+app-shell-page {
+  height: 100vh;
+  display: block;
+
+  ui5-shellbar {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
